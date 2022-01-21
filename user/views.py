@@ -39,7 +39,7 @@ def sign_in_view(request):
         else:
             return redirect('/sign-in')
 
-        return HttpResponse('로그인 성성성공!')
+        return HttpResponse('로그인 성성공!')
     elif request.method == 'GET':
         return render(request, 'user/signin.html')
 
