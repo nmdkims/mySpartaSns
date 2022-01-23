@@ -26,12 +26,14 @@
                                     <div class="media-body">
                                         <h5 class="mt-0">나의 이야기를 적어주세요</h5>
                                         <p>
-                                        <form action ="/tweet/" method="post">
+                                        <form action="/tweet/" method="post">
                                             {% csrf_token %}
                                             <div class="form-group mb-2">
-                                                <textarea class="form-control" style="resize: none" name='my-content' id="my-content"></textarea>
+                                                <textarea class="form-control" style="resize: none" name='my-content'
+                                                          id="my-content"></textarea>
                                             </div>
-                                            <button type="submit" class="btn btn-primary" style="float:right;">작성하기</button>
+                                            <button type="submit" class="btn btn-primary" style="float:right;">작성하기
+                                            </button>
                                         </form>
                                         </p>
                                     </div>
@@ -43,30 +45,56 @@
                 <hr>
                 <!-- 작성 된 글이 나오는 곳 -->
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h5 class="mt-0">Media heading</h5>
-                                        <p>Will you do the same for me? It's time to face the music I'm no longer your
-                                            muse.
-                                            Heard it's
-                                            beautiful, be the judge and my girls gonna take a vote. I can feel a phoenix
-                                            inside
-                                            of me.
-                                            Heaven is
-                                            jealous of our love, angels are crying from up above. Yeah, you take me to
-                                            utopia.</p>
+                    {% for tw in tweet %}
+                        <div class="col-md-12 mb-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if tw.author == user %}
+                                        <div style="text-align: right">
+                                            <a href="/tweet/delete/{{ tw.id }}">
+                                                <span class="badge rounded-pill bg-danger">삭제</span>
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                                    <div style="text-align: right">
+                                        <a href="#">
+                                            <span class="badge rounded-pill bg-success">보기</span>
+                                        </a>
+                                    </div>
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">{{ tw.content }}</h5>
+                                        </div>
+                                        <div style="text-align: right">
+                                            <span style="font-size: small">{{ tw.author.username }}-{{ tw.created_at|timesince }} 전</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
                 </div>
-
             </div>
             <div class="col-md-2"></div>
         </div>
     </div>
 {% endblock %}
+
+
+
+{% for tw in tweet %}
+    <div class="col-md-12 mb-2">
+        <div class="card">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{ tw.content }}</h5>
+                    </div>
+                    <div style="text-align: right">
+                        <span style="font-size: small">{{ tw.author.username }}-{{ tw.created_at|timesince }} 전</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
