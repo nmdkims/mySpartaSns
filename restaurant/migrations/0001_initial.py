@@ -12,27 +12,24 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='TweetComment',
+            name='MyTopping',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('comment', models.CharField(max_length=256)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('topping_name', models.CharField(max_length=100)),
             ],
             options={
-                'db_table': 'comment',
+                'db_table': 'my_topping',
             },
         ),
         migrations.CreateModel(
-            name='TweetModel',
+            name='MyPizza',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('content', models.CharField(max_length=256)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('pizza_name', models.CharField(max_length=100)),
+                ('pizza_topping', models.ManyToManyField(to='restaurant.MyTopping')),
             ],
             options={
-                'db_table': 'tweet',
+                'db_table': 'my_pizza',
             },
         ),
     ]

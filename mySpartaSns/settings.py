@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tweet',
     'user',
-
+    'restaurant',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +122,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # mySpartaSns/settings.py
 AUTH_USER_MODEL = 'user.UserModel'
+
+
