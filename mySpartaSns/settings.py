@@ -22,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-byrl#0na!8-avp95pi=m8n97_s5t(e*gf82_570ouxcj_*+(!$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'tweet',
     'user',
     'restaurant',
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -122,5 +123,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # mySpartaSns/settings.py
 AUTH_USER_MODEL = 'user.UserModel'
-
-
