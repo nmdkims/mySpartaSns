@@ -1,5 +1,9 @@
 <!-- templates/tweet/home.html -->
+
 {% extends 'base.html' %}
+{% block title %}
+    메인페이지
+{% endblock %}
 
 {% block content %}
     <div class="container timeline-container">
@@ -9,8 +13,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ user.username }}</h5>
-
-                        <p class="card-text">{{ user.bio }}</p>
+                        <p class="card-text"> {{ user.bio }}</p>
 
                     </div>
                 </div>
@@ -57,10 +60,11 @@
                                         </div>
                                     {% endif %}
                                     <div style="text-align: right">
-                                        <a href="#">
+                                        <a href="/tweet/{{ tw.id }}">
                                             <span class="badge rounded-pill bg-success">보기</span>
                                         </a>
                                     </div>
+
                                     <div class="media">
                                         <div class="media-body">
                                             <h5 class="mt-0">{{ tw.content }}</h5>
@@ -68,6 +72,7 @@
                                         <div style="text-align: right">
                                             <span style="font-size: small">{{ tw.author.username }}-{{ tw.created_at|timesince }} 전</span>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -79,22 +84,3 @@
         </div>
     </div>
 {% endblock %}
-
-
-
-{% for tw in tweet %}
-    <div class="col-md-12 mb-2">
-        <div class="card">
-            <div class="card-body">
-                <div class="media">
-                    <div class="media-body">
-                        <h5 class="mt-0">{{ tw.content }}</h5>
-                    </div>
-                    <div style="text-align: right">
-                        <span style="font-size: small">{{ tw.author.username }}-{{ tw.created_at|timesince }} 전</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-{% endfor %}
