@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'user',
     'restaurant',
     'taggit',
+
 ]
 
 MIDDLEWARE = [
